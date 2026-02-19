@@ -1,9 +1,8 @@
 const container = document.getElementById("postsContainer");
 
 const getPosts = async () => {
-    const response = await fetch("http://localhost:3000/data");
-    const data = await response.json();
-    const posts = data.posts;
+    const response = await fetch("http://localhost:3000/posts");
+    const posts = await response.json()
 
     container.innerHTML = "";
 
@@ -25,7 +24,7 @@ const getPosts = async () => {
 };
 
 const deletePost = async (id) => {
-    await fetch(`http://localhost:3000/data/posts/${id}`, {
+    await fetch(`http://localhost:3000/posts/${id}`, {
         method: "DELETE"
     });
 

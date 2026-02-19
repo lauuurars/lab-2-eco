@@ -1,40 +1,30 @@
-const getPosts = async () => {
-    const response = await fetch("http://localhost:3000/data")
-    const result = await response.json()
-    return result
-}
-
-getPosts().then(r => console.log(r))
-
-// creando el post !!!
-
 const form = document.getElementById("post-form");
+
+// creando el post!!
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const image = document.getElementById("image").value;
-    const title = document.getElementById("title").value;
-    const description = document.getElementById("description").value;
+    const image = document.getElementById("image-input").value;
+    const title = document.getElementById("title-input").value;
+    const description = document.getElementById("description-input").value;
 
     const newPost = {
+        id: Date.now(),
         image,
         title,
         description
     };
 
-    try {
-        await fetch("http://localhost:3000/data", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newPost)
-        });
-
-        window.location.href = "list.html";
-
-    } catch (error) {
-        console.error("Error creating post:", error);
+    const response = await fetch("http://localhost:3000/posts", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newPost)
+    });    
+    
+    if (!response.ok) {
+        throw new Error("No se pudo crear el post :c");
     }
 });
