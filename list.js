@@ -1,5 +1,7 @@
 const container = document.getElementById("postsContainer");
 
+// obteniendo los posts de la db 
+
 const getPosts = async () => {
     const response = await fetch("http://localhost:3000/posts");
     const posts = await response.json()
@@ -8,7 +10,7 @@ const getPosts = async () => {
 
     posts.forEach(post => {
         container.innerHTML += `
-        <div class="bg-white p-4 rounded-xl shadow-lg">
+        <div id="post-${post.id}" class="bg-white p-4 rounded-xl shadow-lg">
             <img src="${post.image}" class="w-full h-40 object-cover rounded-lg mb-3" />
             <h2 class="font-bold text-lg">${post.title}</h2>
             <p class="text-gray-600 text-sm mb-3">${post.description}</p>
@@ -23,12 +25,25 @@ const getPosts = async () => {
     });
 };
 
-const deletePost = async (id) => {
-    await fetch(`http://localhost:3000/posts/${id}`, {
-        method: "DELETE"
-    });
+// función de borrar el post :o
 
-    getPosts();
+const deletePost = async (id) => {
+    try {
+        const response = await fetch(`http://localhost:3000/posts/${id}`, {
+            method: "DELETE"
+        });
+
+        if (!response.ok) {
+            throw new Error("No se pudo eliminar el post :c");
+        }
+
+        document.getElementById(`post-${id}`).remove();
+
+        alert("Post eliminado ( • ᴗ - ) ✧");
+
+    } catch (error) {
+        console.error("Error deleting post:", error);
+    }
 };
 
 getPosts();

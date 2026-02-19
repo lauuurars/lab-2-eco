@@ -10,7 +10,6 @@ form.addEventListener("submit", async (e) => {
     const description = document.getElementById("description-input").value;
 
     const newPost = {
-        id: Date.now(),
         image,
         title,
         description
@@ -27,4 +26,12 @@ form.addEventListener("submit", async (e) => {
     if (!response.ok) {
         throw new Error("No se pudo crear el post :c");
     }
+});
+
+// navegación de list POSTS btn :p
+
+const listBtn = document.getElementById("list-btn");
+
+listBtn.addEventListener("click", () => {
+    window.location.href = "list.html";
 });
