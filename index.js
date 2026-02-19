@@ -7,12 +7,12 @@ form.addEventListener("submit", async (e) => {
 
     const image = document.getElementById("image-input").value;
     const title = document.getElementById("title-input").value;
-    const description = document.getElementById("description-input").value;
+    const body = document.getElementById("description-input").value;
 
     const newPost = {
         image,
         title,
-        description
+        body
     };
 
     const response = await fetch("http://localhost:3000/posts", {
@@ -26,6 +26,7 @@ form.addEventListener("submit", async (e) => {
     if (!response.ok) {
         throw new Error("No se pudo crear el post :c");
     }
+    window.location.href = "list.html";
 });
 
 // navegación de list POSTS btn :p

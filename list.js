@@ -10,15 +10,15 @@ const getPosts = async () => {
 
     posts.forEach(post => {
         container.innerHTML += `
-        <div id="post-${post.id}" class="bg-white p-4 rounded-xl shadow-lg">
-            <img src="${post.image}" class="w-full h-40 object-cover rounded-lg mb-3" />
+        <div id="post-${post.id}" class="bg-purple-100 p-6 rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+            <img src="${post.image}" class="w-full h-50 object-cover rounded-lg mb-3" />
             <h2 class="font-bold text-lg">${post.title}</h2>
-            <p class="text-gray-600 text-sm mb-3">${post.description}</p>
+            <p class="text-gray-600 text-sm mb-3">${post.body}</p>
             <button 
-            onclick="deletePost(${post.id})"
-            class="bg-red-400 text-white px-3 py-1 rounded hover:bg-red-500 transition"
+            onclick="deletePost('${post.id}')"
+            class="bg-violet-500 text-white px-3 py-1 rounded hover:bg-violet-600 transition"
             >
-                Delete
+                Delete Post
             </button>
         </div>
     `;
@@ -47,3 +47,11 @@ const deletePost = async (id) => {
 };
 
 getPosts();
+
+// navegación al formulario :p
+
+const backToBtn = document.getElementById("back-btn");
+
+backToBtn.addEventListener("click", () => {
+    window.location.href = "index.html";
+});
