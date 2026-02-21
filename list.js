@@ -45,8 +45,8 @@ const getPosts = async () => {
                 <p class="mb-4">The server appears to be down or unavailable.</p>
                 <button 
                     onclick="getPosts()"
-                    class="bg-violet-400 text-white px-4 py-2 rounded-lg hover:bg-violet-500 transition">
-                    Reintentar
+                    class="bg-violet-400 text-white font-semibold px-4 py-2 rounded-lg hover:bg-violet-500 transition">
+                    Try Again
                 </button>
             </div>
         `;
