@@ -9,24 +9,26 @@ form.addEventListener("submit", async (e) => {
     const title = document.getElementById("title-input").value;
     const body = document.getElementById("description-input").value;
 
-    const newPost = {
-        image,
-        title,
-        body
-    };
+    const newPost = { image, title, body };
 
-    const response = await fetch("http://localhost:3000/posts", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newPost)
-    });    
-    
-    if (!response.ok) {
-        throw new Error("No se pudo crear el post :c");
+    try {
+        const response = await fetch("http://localhost:3000/posts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newPost)
+        });
+
+        if (!response.ok) {
+            throw new Error("Server Error");
+        }
+
+        window.location.href = "list.html";
+
+    } catch (error) {
+        alert("The server is down (×𐃷×)");
     }
-    window.location.href = "list.html";
 });
 
 // navegación de list POSTS btn :p

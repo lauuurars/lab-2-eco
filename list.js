@@ -62,12 +62,12 @@ const deletePost = async (id) => {
         });
 
         if (!response.ok) {
-            throw new Error("No se pudo eliminar el post :c");
+            throw new Error("The post couldn't be published :c");
         }
 
         document.getElementById(`post-${id}`).remove();
 
-        alert("Post eliminado ( • ᴗ - ) ✧");
+        alert("Deleted Post ( • ᴗ - ) ✧");
 
     } catch (error) {
         console.error("Error deleting post:", error);
